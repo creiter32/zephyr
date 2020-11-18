@@ -781,12 +781,12 @@ int optrust_ecdsa_sign_oid(struct optrust_ctx *ctx, uint16_t oid, const uint8_t 
 
 	/* decode to raw RS values */
 	bool success = asn1_to_ecdsa_rs(out_data, out_len, signature, expected_sig_len);
-
 	if (!success) {
 		LOG_ERR("Failed to decode signature");
 		return -EIO;
 	}
 
+	*signature_len = expected_sig_len;
 	return 0;
 }
 
